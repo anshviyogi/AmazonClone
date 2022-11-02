@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
@@ -9,6 +9,7 @@ import {auth} from './firebase'
 function Header() {
 
     const [{basket, user},dispatch] = useStateValue();
+    console.log("User >>> ",user)
     // console.log(user.multiFactor.user.email)
 
     // This will show us the current products which are added in the basket yet . . .
@@ -30,7 +31,7 @@ function Header() {
 
         {/* Search Bar */}
         <div className='header__search'>
-        <input type='text' className='header__searchInput'/>
+        <input type='text' className='header__searchInput' placeholder='Search Products'/>
         <SearchIcon className='header__searchIcon' />
         </div>
 
@@ -39,7 +40,7 @@ function Header() {
             <Link to={!user && '/login'} className='header__link'>
 
             <div onClick={handleAuthentication} className='header__option'>
-            <span className='header__optionLineOne'>Hello {user? user.multiFactor.user.email : "Guest"}</span>
+            <span className='header__optionLineOne'>Hello {user? user.multiFactor.user.email.split('@')[0] : "Guest"}</span>
             <span className='header__optionLineTwo'>{user ? 'Sign Out'  : 'Sign In'}</span>
             </div>
 

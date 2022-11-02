@@ -3,9 +3,17 @@ import './Subtotal.css'
 import CurrencyFormat from 'react-currency-format'
 import { useStateValue } from './StateProvider'
 import { getBasketTotal } from './reducer'
-function Subtotal() {
 
-    const [{basket},dispatch] = useStateValue()
+function Subtotal() {
+    const [{basket,user},dispatch] = useStateValue()
+
+    function checkoutHandler(){
+        if(!user){
+            return alert('Please login to continue')
+        }
+
+        alert('Checkout Page and Admin Portal are in construction . . .')
+    }
 
   return (
     <div className='subtotal'>
@@ -28,7 +36,7 @@ function Subtotal() {
         thousandSeparator = {true}
         prefix={"$"}
         />
-        <button>Proceed to Checkout</button>
+        <button onClick={checkoutHandler}>Proceed to Checkout</button>
     </div>
   )
 }

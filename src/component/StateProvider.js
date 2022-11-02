@@ -14,7 +14,7 @@ export const StateContent = createContext()
 export const StateProvider = ({reducer,initialState,children}) =>{
     return(
 <StateContent.Provider value={useReducer(reducer,initialState)}>
-    {children} 
+    {children}
     {/**Go in the index.js file and there App.js in this children */}
 </StateContent.Provider>
 )
